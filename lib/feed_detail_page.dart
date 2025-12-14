@@ -8,13 +8,24 @@ class FeedDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(backgroundColor: Colors.blue, title: Text(title)),
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        title: Text(title),
+        leading: IconButton(
+          onPressed: () {
+            print('on Back Pressed.✅');
+            Navigator.pop(context);
+          },
+          icon: Icon(Icons.arrow_back),
+        ),
+      ),
       body: Center(
         child: ElevatedButton(
           style: ButtonStyle(
             backgroundColor: WidgetStateProperty.all(Colors.red),
           ),
           onPressed: () {
+            print('on Back Pressed.✅');
             Navigator.push(
               context,
               MaterialPageRoute(
