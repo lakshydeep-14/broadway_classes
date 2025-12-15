@@ -1,4 +1,5 @@
 import 'package:broadway_infosys/home_page.dart';
+import 'package:broadway_infosys/photo_detail.dart';
 import 'package:flutter/material.dart';
 
 class MessageScreen extends StatelessWidget {
@@ -12,7 +13,7 @@ class MessageScreen extends StatelessWidget {
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (_) => HomePage()),
+              MaterialPageRoute(builder: (_) => PhotoDetail(text: 'Hello',)),
               (route) => false,
             );
 
@@ -28,3 +29,17 @@ class MessageScreen extends StatelessWidget {
     );
   }
 }
+
+List<String> _photo=[
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  'assets/image1.png',
+  
+];

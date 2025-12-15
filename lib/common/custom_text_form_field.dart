@@ -16,6 +16,9 @@ class CustomtextFormField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      validator: (v) {
+        return 'this is Required field.';
+      },
       // onChanged: (value) {
       //   print(value);
       // },
