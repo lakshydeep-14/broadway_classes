@@ -1,9 +1,10 @@
 import 'package:broadway_infosys/feed_detail_page.dart';
+import 'package:broadway_infosys/model/post_model.dart';
 import 'package:flutter/material.dart';
 
 class FeedPost extends StatelessWidget {
-  final int position;
-  const FeedPost({super.key, required this.position});
+  final PostModel post;
+  const FeedPost({super.key, required this.post});
 
   @override
   Widget build(BuildContext context) {
@@ -12,12 +13,13 @@ class FeedPost extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => FeedDetailPage(title: 'Broadway Infosys $position'),
+            builder: (_) => FeedDetailPage(title: 'Broadway Infosys '),
           ),
         );
       },
       child: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               // padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
@@ -29,14 +31,14 @@ class FeedPost extends StatelessWidget {
                     children: [
                       CircleAvatar(
                         radius: 25,
-                        backgroundImage: AssetImage('assets/image2.jpg'),
+                        backgroundImage: NetworkImage(post.userPhoto),
                       ),
                       SizedBox(width: 10),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Broadway $position Feed ',
+                            post.userName,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 18,
@@ -44,7 +46,7 @@ class FeedPost extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            'December 2',
+                            post.postDate.toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.w500,
@@ -60,7 +62,15 @@ class FeedPost extends StatelessWidget {
               ),
             ),
 
-            Image.asset('assets/image2.jpg'),
+            Image.asset(post.photoUrl),
+            SizedBox(height: 10),
+            Text(
+              post.description,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
 
             SizedBox(height: 20),
             Padding(
@@ -71,7 +81,27 @@ class FeedPost extends StatelessWidget {
                   Row(
                     spacing: 18,
                     children: [
-                      Icon(Icons.favorite, color: Colors.white, size: 40),
+                      Row(
+                        children: [
+                          if (post.isPostLiked)
+                            Icon(Icons.favorite, color: Colors.white, size: 40)
+                          else
+                            Icon(
+                              Icons.favorite_border,
+                              color: Colors.white,
+                              size: 40,
+                            ),
+                          if (post.likeCount != 0)
+                            Text(
+                              post.likeCount.toString(),
+                              style: TextStyle(
+                                fontSize: 30,
+                                color: Colors.white,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                        ],
+                      ),
                       // SizedBox(width: 18),
                       Row(
                         children: [
