@@ -1,6 +1,8 @@
 import 'package:broadway_infosys/feed_detail_page.dart';
 import 'package:broadway_infosys/model/post_model.dart';
+import 'package:broadway_infosys/utils/date_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class FeedPost extends StatelessWidget {
   final PostModel post;
@@ -10,12 +12,12 @@ class FeedPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (_) => FeedDetailPage(title: 'Broadway Infosys '),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (_) => FeedDetailPage(title: 'Broadway Infosys '),
+        //   ),
+        // );
       },
       child: Container(
         child: Column(
@@ -27,34 +29,39 @@ class FeedPost extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundImage: NetworkImage(post.userPhoto),
-                      ),
-                      SizedBox(width: 10),
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            post.userName,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                  Expanded(
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 25,
+                          backgroundImage: NetworkImage(post.userPhoto),
+                        ),
+                        SizedBox(width: 10),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                post.userName,
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                CustomDateUtils().formatDate(post.postDate),
+                                // post.postDate.toString(),
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
                           ),
-                          Text(
-                            post.postDate.toString(),
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                        ),
+                      ],
+                    ),
                   ),
 
                   Icon(Icons.more_horiz, color: Colors.white),
@@ -84,12 +91,26 @@ class FeedPost extends StatelessWidget {
                       Row(
                         children: [
                           if (post.isPostLiked)
-                            Icon(Icons.favorite, color: Colors.white, size: 40)
+                            GestureDetector(
+                              onTap: () {
+                                Fluttertoast.showToast(msg: 'Post liked.');
+                              },
+                              child: Icon(
+                                Icons.favorite,
+                                color: Colors.white,
+                                size: 40,
+                              ),
+                            )
                           else
-                            Icon(
-                              Icons.favorite_border,
-                              color: Colors.white,
-                              size: 40,
+                            GestureDetector(
+                              onTap: () {
+                                Fluttertoast.showToast(msg: 'Post unliked.');
+                              },
+                              child: Icon(
+                                Icons.favorite_border,
+                                color: Colors.white,
+                                size: 40,
+                              ),
                             ),
                           if (post.likeCount != 0)
                             Text(
