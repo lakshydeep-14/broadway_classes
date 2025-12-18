@@ -25,35 +25,40 @@ class _AddPostState extends State<AddPost> {
           child: Column(
             spacing: 20,
             children: [
+              // CustomtextFormField(
+              //   controller: userNameController,
+              //   hintText: 'Enter User Name',
+              // ),
               CustomtextFormField(
                 controller: userNameController,
-                hintText: 'Enter User Name',
+                hintText: 'Password',
+                obscureText: true,
               ),
-              if (selectedUserPhoto != null)
-                Image.file(File(selectedUserPhoto!.path))
-              else
-                Text('Use the below button to pick image'),
-              CustomtextFormField(
-                controller: userNameController,
-                hintText: 'Pick user photo',
-                readOnly: true,
-                onTap: () async {
-                  final XFile? image = await picker.pickImage(
-                    source: ImageSource.camera,
-                  );
-                  // final List<XFile>? image2 = await picker.pickMultiImage(
-                  // );
-                  if (image != null) {
-                    setState(() {
-                      selectedUserPhoto = image;
-                    });
-                    print('Picked image from gallery');
-                  } else {
-                    print('Image not picked  from gallery');
-                  }
-                },
-              ),
-              ElevatedButton(onPressed: () {}, child: Text('Save')),
+              // if (selectedUserPhoto != null)
+              //   Image.file(File(selectedUserPhoto!.path))
+              // else
+              //   Text('Use the below button to pick image'),
+              // CustomtextFormField(
+              //   controller: userNameController,
+              //   hintText: 'Pick user photo',
+              //   readOnly: true,
+              //   onTap: () async {
+              //     final XFile? image = await picker.pickImage(
+              //       source: ImageSource.camera,
+              //     );
+              //     // final List<XFile>? image2 = await picker.pickMultiImage(
+              //     // );
+              //     if (image != null) {
+              //       setState(() {
+              //         selectedUserPhoto = image;
+              //       });
+              //       print('Picked image from gallery');
+              //     } else {
+              //       print('Image not picked  from gallery');
+              //     }
+              //   },
+              // ),
+              // ElevatedButton(onPressed: () {}, child: Text('Save')),
             ],
           ),
         ),

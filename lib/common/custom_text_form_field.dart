@@ -10,6 +10,7 @@ class CustomtextFormField extends StatefulWidget {
     this.maxLength,
     this.onTap,
     this.readOnly = false,
+    this.obscureText = false,
   });
   final Function()? onTap;
   final TextEditingController controller;
@@ -18,6 +19,7 @@ class CustomtextFormField extends StatefulWidget {
   final FormFieldValidator<String>? validator;
   final int? maxLength;
   final bool readOnly;
+  final bool obscureText;
   @override
   State<CustomtextFormField> createState() => _CustomtextFormFieldState();
 }
@@ -29,6 +31,8 @@ class _CustomtextFormFieldState extends State<CustomtextFormField> {
       onTap: widget.onTap,
       readOnly: widget.readOnly,
       controller: widget.controller,
+      obscuringCharacter: '\$',
+      obscureText: widget.obscureText,
       validator: widget.validator,
       // onChanged: (value) {
       //   print(value);
