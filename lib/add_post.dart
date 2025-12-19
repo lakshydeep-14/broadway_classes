@@ -22,8 +22,8 @@ class _AddPostState extends State<AddPost> {
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
-          child: Column(
-            spacing: 20,
+          child: Stack(
+          
             children: [
               // CustomtextFormField(
               //   controller: userNameController,
