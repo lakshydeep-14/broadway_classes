@@ -1,3 +1,4 @@
+import 'package:broadway_infosys/splash2.dart';
 import 'package:dots_indicator/dots_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -50,92 +51,123 @@ class _SplashState extends State<Splash> {
     ),
   ];
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final deviceSize = MediaQuery.of(context).size;
     final item = _splashList[index];
     return Scaffold(
+      appBar: AppBar(backgroundColor: Colors.red),
       body: Stack(
         children: [
-          Container(
-            color: item.backgroundColor,
-            height: deviceSize.height,
-            width: deviceSize.width,
-          ),
-          Positioned.fill(
-            top: 96,
-            left: 17,
-            right: 17,
-            // bottom: 56,
-            child: Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Center(
-                    child: Text(
-                      item.title,
-                      style: TextStyle(
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                      ),
-                    ),
-                  ),
-                  if (item.color != null)
-                    Container(height: 100, width: 100, color: item.color),
-                  Text(
-                    item.subTitle,
-                    style: TextStyle(color: Colors.white, fontSize: 22),
-                  ),
-                  Spacer(),
-                  DotsIndicator(dotsCount: 4, position: index.toDouble()),
-                  SizedBox(height: 32),
-                  GestureDetector(
-                    onTap: () {
-                      //  (index+1)<_splashList.length
-                      if (index < _splashList.length - 1) {
-                        setState(() {
-                          index++;
-                        });
-                      } else {
-                        Fluttertoast.showToast(
-                          msg: 'Navigate to Auth1-welcome screen',
-                        );
-                      }
-                    },
-                    child: Container(
-                      height: 60,
-                      width: deviceSize.width,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: Offset(0, -100),
-                            blurRadius: 9,
-                            spreadRadius: 0,
-                            color: Colors.black.withValues(alpha: 1),
-                          ),
-                          BoxShadow(
-                            offset: Offset(0, 50),
-                            blurRadius: 9,
-                            spreadRadius: 0,
-                            color: Colors.purpleAccent.withValues(alpha: 1),
-                          ),
-                        ],
-                        gradient: LinearGradient(
-                          colors: [Colors.black, Colors.orange],
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          'Get Started',
-                          style: TextStyle(fontSize: 24, color: Colors.white),
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 56),
-                ],
+          GestureDetector(
+            onTap: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => Splash2Screen()),
+              );
+            },
+            child: Container(
+              // color: item.backgroundColor,
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                // shape: BoxShape.circle,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100),
+                child: Image.asset('assets/shopping2.png', fit: BoxFit.cover),
               ),
             ),
           ),
+
+          // Positioned.fill(
+          //   top: 96,
+          //   left: 17,
+          //   right: 17,
+          //   // bottom: 56,
+          //   child: Center(
+          //     child: Column(
+          //       mainAxisSize: MainAxisSize.max,
+          //       crossAxisAlignment: CrossAxisAlignment.center,
+          //       children: [
+          //         Center(
+          //           child: Text(
+          //             item.title,
+          //             style: TextStyle(
+          //               fontSize: 32,
+          //               fontWeight: FontWeight.w900,
+          //             ),
+          //           ),
+          //         ),
+          //         // if (item.color != null)
+          //         //   Container(height: 100, width: 100, color: item.color),
+          //         Text(
+          //           item.subTitle,
+          //           style: TextStyle(color: Colors.white, fontSize: 22),
+          //         ),
+          //         Spacer(),
+          //         DotsIndicator(dotsCount: 4, position: index.toDouble()),
+          //         SizedBox(height: 32),
+          //         GestureDetector(
+          //           onTap: () {
+          //             //  (index+1)<_splashList.length
+          //             if (index < _splashList.length - 1) {
+          //               setState(() {
+          //                 index++;
+          //               });
+          //             } else {
+          //               Fluttertoast.showToast(
+          //                 msg: 'Navigate to Auth1-welcome screen',
+          //               );
+          //             }
+          //           },
+          //           child: Container(
+          //             height: 60,
+          //             width: deviceSize.width,
+          //             decoration: BoxDecoration(
+          //               boxShadow: [
+          //                 BoxShadow(
+          //                   offset: Offset(0, -100),
+          //                   blurRadius: 9,
+          //                   spreadRadius: 0,
+          //                   color: Colors.black.withValues(alpha: 1),
+          //                 ),
+          //                 BoxShadow(
+          //                   offset: Offset(0, 50),
+          //                   blurRadius: 9,
+          //                   spreadRadius: 0,
+          //                   color: Colors.purpleAccent.withValues(alpha: 1),
+          //                 ),
+          //               ],
+          //               gradient: LinearGradient(
+          //                 colors: [Colors.black, Colors.orange],
+          //               ),
+          //             ),
+          //             child: Center(
+          //               child: Text(
+          //                 'Get Started',
+          //                 style: TextStyle(fontSize: 24, color: Colors.white),
+          //               ),
+          //             ),
+          //           ),
+          //         ),
+          //         SizedBox(height: 56),
+          //       ],
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );
