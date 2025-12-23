@@ -1,4 +1,5 @@
 import 'package:broadway_infosys/home_page.dart';
+import 'package:broadway_infosys/product_list.dart';
 import 'package:broadway_infosys/splash.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Splash());
+    return MaterialApp(home: ProductListScreen());
   }
 }
 
