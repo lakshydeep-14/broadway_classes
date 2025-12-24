@@ -212,6 +212,7 @@ class _FeedDetailPageState extends State<FeedDetailPage> {
                     itemCount: _photoList.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       // childAspectRatio: ,
+                      childAspectRatio: 1,
                       crossAxisCount: 3, // number of columns
                       mainAxisSpacing: 20,
                       crossAxisSpacing: 20,

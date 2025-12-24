@@ -12,12 +12,12 @@ class FeedPost extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     builder: (_) => FeedDetailPage(title: 'Broadway Infosys '),
-        //   ),
-        // );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => FeedDetailPage(title: 'Broadway Infosys '),
+          ),
+        );
       },
       child: Container(
         child: Column(
