@@ -1,4 +1,4 @@
-import 'package:broadway_infosys/get_example.dart';
+import 'package:broadway_infosys/get_example/get_example.dart';
 import 'package:broadway_infosys/home_page.dart';
 import 'package:broadway_infosys/product_list.dart';
 import 'package:broadway_infosys/splash.dart';

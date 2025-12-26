@@ -1,3 +1,4 @@
+import 'package:broadway_infosys/login_page.dart';
 import 'package:flutter/material.dart';
 
 class Splash2Screen extends StatefulWidget {
@@ -13,7 +14,10 @@ class _Splash2ScreenState extends State<Splash2Screen> {
 
   _checking() {
     if (isFirstRun) {
-      // Login pgage
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => LoginPage()),
+      );
     } else if (isFirstRun && isLoggedIn) {
       // Home Page
     } else if (isFirstRun && !isLoggedIn) {

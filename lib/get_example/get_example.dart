@@ -1,10 +1,14 @@
+import 'package:broadway_infosys/get_example/get_example_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CountController extends GetxController {
-  RxInt count = 10.obs;
-  RxString text = '10'.obs;
-}
+// install Get Package
+// Chnage MaterialApp to GetMaterialApp
+// for routing, we will use Get.to(<PageName()>)
+// define controller
+// initialize controller by using Get.put
+// use controller by Get.find
+// use obx to see an updated data
 
 class GetExampleScreen extends StatefulWidget {
   const GetExampleScreen({super.key});
@@ -14,10 +18,10 @@ class GetExampleScreen extends StatefulWidget {
 }
 
 class _GetExampleScreenState extends State<GetExampleScreen> {
-  final controller = Get.put(CountController());
   final inputController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    Get.put(GetExampleController());
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
@@ -31,7 +35,7 @@ class _GetExampleScreenState extends State<GetExampleScreen> {
             Obx(
               () => Text(
                 'Count Value: ' +
-                    Get.find<CountController>().count.value.toString(),
+                    Get.find<GetExampleController>().count.value.toString(),
               ),
             ),
             TextFormField(
@@ -42,10 +46,10 @@ class _GetExampleScreenState extends State<GetExampleScreen> {
             Center(
               child: ElevatedButton(
                 onPressed: () {
-                  Get.find<CountController>().count.value = int.parse(
+                  Get.find<GetExampleController>().count.value = int.parse(
                     inputController.text,
                   );
-                  print(Get.find<CountController>().count.value);
+                  print(Get.find<GetExampleController>().count.value);
                 },
                 child: Text('Change value'),
               ),
@@ -113,7 +117,7 @@ class _GetExampleScreen3State extends State<GetExampleScreen3> {
           Obx(
             () => Text(
               'Count Value: ' +
-                  Get.find<CountController>().count.value.toString(),
+                  Get.find<GetExampleController>().count.value.toString(),
             ),
           ),
           SizedBox(height: 10),
@@ -121,7 +125,7 @@ class _GetExampleScreen3State extends State<GetExampleScreen3> {
           Center(
             child: ElevatedButton(
               onPressed: () {
-                Get.find<CountController>().count.value = 0;
+                Get.find<GetExampleController>().count.value = 0;
                 Get.offAll(GetExampleScreen());
               },
               child: Text('Back to first page'),
