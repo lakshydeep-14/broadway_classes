@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 // install Get Package
 // Chnage MaterialApp to GetMaterialApp
 // for routing, we will use Get.to(<PageName()>)
-// define controller
+// define controller and variables
 // initialize controller by using Get.put
 // use controller by Get.find
 // use obx to see an updated data
