@@ -5,6 +5,7 @@ class ProductController extends GetxController {
   RxList<ProductModel> featuredProductList = <ProductModel>[].obs;
   RxList<ProductModel> productCartList = <ProductModel>[].obs;
 
+  Rxn<ProductModel> selectedProduct = Rxn();
   @override
   void onInit() {
     // TODO: implement onInit
@@ -23,9 +24,11 @@ class ProductController extends GetxController {
     // add data to productCartList
     // show snackbar using getx "product added successfully"
     //use productCartList.assign() to add data
+    productCartList.add(product);
+    Get.showSnackbar(GetSnackBar(message: 'Product added to cart.'));
   }
 
-  void deleteItemFromCart() {
+  void deleteItemFromCart(ProductModel product) {
     // remove item from productCartList
   }
 
