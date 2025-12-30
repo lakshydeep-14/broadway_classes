@@ -13,35 +13,66 @@ class ProductDetailScreen extends StatefulWidget {
 }
 
 class _ProductDetailScreenState extends State<ProductDetailScreen> {
+  final controller = Get.find<ProductController>();
+
   @override
   Widget build(BuildContext context) {
+    final product = controller.selectedProduct.value!;
+
     return Scaffold(
-      appBar: AppBar(title: Text('Detail Page')),
+      appBar: AppBar(title: const Text('Detail Page')),
       body: Column(
         children: [
-          Expanded(
-            child: Center(
-              child: Text(
-                Get.find<ProductController>().selectedProduct.value!.productName
-                    .toString(),
-              ),
+          Expanded(child: Center(child: Text(product.productName))),
+          product.isFavorite.value
+              ? Icon(Icons.favorite)
+              : Icon(Icons.favorite_border),
+
+          /// 🔢 Quantity Selector
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                IconButton(
+                  onPressed: () {
+                    if (product.quantity.value > 1) {
+                      product.quantity.value--;
+                    }
+                  },
+                  icon: const Icon(Icons.remove),
+                ),
+                Text(
+                  product.quantity.value.toString(),
+                  style: const TextStyle(fontSize: 18),
+                ),
+                IconButton(
+                  onPressed: () {
+                    product.quantity.value++;
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
             ),
           ),
+
+          const SizedBox(height: 16),
+
+          /// 🛒 Add to cart
           ElevatedButton(
             onPressed: () {
-              Get.find<ProductController>().addToCart(
-                Get.find<ProductController>().selectedProduct.value!,
-              );
+              controller.addToCart(product);
             },
-            child: Text('Add to cart'),
+            child: const Text('Add to cart'),
           ),
+
           ElevatedButton(
             onPressed: () {
-              Get.to(CartPage());
+              Get.to(const CartPage());
             },
-            child: Text('Go to cart page'),
+            child: const Text('Go to cart page'),
           ),
-          SizedBox(height: 100),
+
+          const SizedBox(height: 100),
         ],
       ),
     );

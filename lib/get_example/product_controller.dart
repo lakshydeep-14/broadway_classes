@@ -25,7 +25,12 @@ class ProductController extends GetxController {
     // show snackbar using getx "product added successfully"
     //use productCartList.assign() to add data
     productCartList.add(product);
-    Get.showSnackbar(GetSnackBar(message: 'Product added to cart.'));
+    Get.showSnackbar(
+      GetSnackBar(
+        message: 'Product added to cart.',
+        duration: const Duration(seconds: 2),
+      ),
+    );
   }
 
   void deleteItemFromCart(ProductModel product) {

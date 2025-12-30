@@ -15,11 +15,11 @@ class _ProductListScreenState extends State<ProductListScreen> {
   @override
   Widget build(BuildContext context) {
     Get.put(ProductController());
-    final controller = Get.find<ProductController>();
+    // final controller = Get.find<ProductController>();
     return Scaffold(
       appBar: AppBar(title: Text('Product List Screen')),
       body: GridView.builder(
-        itemCount: controller.featuredProductList.length,
+        itemCount: Get.find<ProductController>().featuredProductList.length,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
@@ -27,7 +27,7 @@ class _ProductListScreenState extends State<ProductListScreen> {
         ),
         itemBuilder: (_, i) {
           return Obx(() {
-            final item = controller.featuredProductList[i];
+            final item = Get.find<ProductController>().featuredProductList[i];
             return GestureDetector(
               onTap: () {
                 Get.find<ProductController>().selectedProduct.value = item;
@@ -42,9 +42,9 @@ class _ProductListScreenState extends State<ProductListScreen> {
                   children: [
                     GestureDetector(
                       onTap: () {
-                        item.isFavorite = !item.isFavorite;
+                        item.isFavorite.value = !item.isFavorite.value;
                       },
-                      child: item.isFavorite
+                      child: item.isFavorite.value
                           ? Icon(Icons.favorite)
                           : Icon(Icons.favorite_border),
                     ),
