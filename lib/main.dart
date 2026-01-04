@@ -1,6 +1,7 @@
 import 'package:broadway_infosys/get_example/get_example.dart';
 import 'package:broadway_infosys/get_example/product_list_screen.dart';
 import 'package:broadway_infosys/home_page.dart';
+import 'package:broadway_infosys/local_storage/splash_screen.dart';
 import 'package:broadway_infosys/product_list.dart';
 import 'package:broadway_infosys/splash.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(home: ProductListScreen());
+    return GetMaterialApp(home: LocalStorageSplashScreen());
   }
 }
 
